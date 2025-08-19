@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cursos/', include('courses.urls')), # Aponta para o app de cursos
     path('users/', include('users.urls')), # Aponta para o app de usuários
+    path('', include('home.urls')), # Aponta para o app de home
 ]
 
 # Para servir arquivos estáticos e de mídia (uploads) em desenvolvimento

@@ -1,0 +1,17 @@
+{% extends 'templates.base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-container">
+    <h1 class="home-title">
+        Encontre, inspire e<br>
+        compartilhe seus projetos com<br>
+        a onNexus
+    </h1>
+    <div class="search-ai">
+        <img src="{% static 'images/ai.png' %}" alt="Ícone de IA">
+        <input type="text" placeholder="Pesquisar para se inspirar">
+        <button><img src="{% static 'images/lupa.png' %}" alt="Pesquisar"></button>
+    </div>
+    </div>
+{% endblock %}
