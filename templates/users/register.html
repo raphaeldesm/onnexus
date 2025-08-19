@@ -1,0 +1,23 @@
+{% extends 'templates.base.html' %}
+{% block content %}
+<div class="register-container">
+    <div class="register-form">
+        <button class="close-btn">&times;</button>
+        <h2 class="form-title">onNexus</h2>
+        <div class="social-login">
+            <button class="social-btn google"></button>
+            <button class="social-btn facebook"></button>
+        </div>
+        <div class="divider">ou</div>
+        <p class="login-link">Já tem uma conta? <a href="#">Entrar</a></p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nome Completo" required>
+            <input type="text" name="phone" placeholder="Telefone" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Crie uma senha" required>
+            <button type="submit" class="submit-btn">Criar conta</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>onNexus</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="#">Explorar</a></li>
+                <li><a href="#">Contratar</a></li>
+                <li><a href="/cursos/">Cursos</a></li>
+            </ul>
+            <div class="logo">onNexus</div>
+            <button class="login-btn">Fazer Login</button>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar cursos...">
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>onNexus</h3>
+                <ul>
+                    <li>Sobre</li>
+                    <li>Termos e condições</li>
+                    <li>Privacidade</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Rede Social</h3>
+                <ul>
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">© onNexus 2025. Todos os direitos reservados.</div>
+    </footer>
+</body>
+</html>
