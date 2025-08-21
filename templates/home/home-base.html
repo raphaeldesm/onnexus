@@ -1,6 +1,5 @@
 {% extends 'templates.base.html' %}
 {% load static %}
-
 {% block content %}
 <div class="home-container">
     <h1 class="home-title">
@@ -8,10 +7,34 @@
         compartilhe seus projetos com<br>
         a onNexus
     </h1>
-    <div class="search-ai">
-        <img src="{% static 'images/ai.png' %}" alt="Ícone de IA">
-        <input type="text" placeholder="Pesquisar para se inspirar">
-        <button><img src="{% static 'images/lupa.png' %}" alt="Pesquisar"></button>
+    <div class="search-bar2">
+        <input class="search-input" type="text" placeholder="Pesquisar para se inspirar">
     </div>
+    <div class="buttons-filter">
+        <button class="filter-btn">1</button>
+        <button class="filter-btn">2</button>
+        <button class="filter-btn">3</button>
+        <button class="filter-btn">...</button>
     </div>
+    <div class="posts">
+        <ul class="posts-list">
+            {% for post in posts %}
+            <li class="post">
+                <a href="#">
+                    <img class="post-image" src="{{ post.image.url }}" alt="">
+                </a>
+                <div class="post-info">
+                    <img class="profile-image" src="{% static '/images/' %}{{post.profile}}" alt="">
+                    <p>{{ post.username }}</p>
+                    <img class="post-icons" src="{% static '/images/favorites.png' %}" alt="">
+                    <p>{{ post.favorites }}</p>
+                    <img class="post-icons" src="{% static '/images/views.png' %}" alt="">
+                    <p>{{ post.views }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a class="login2-btn" href="#">Faça login para prosseguir</a>
+    </div>
+</div>
 {% endblock %}
