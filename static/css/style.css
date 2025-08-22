@@ -63,6 +63,7 @@ a {
     font-size: 1.8em;
     font-weight: 700;
     color: var(--light-text);
+    margin-right: 8%;
 }
 
 .login-btn {
@@ -381,6 +382,12 @@ a {
     padding: 75px 2.1%;
     min-height: 30vh;
 }
+
+.courses-area2 {
+    padding: 50px 2.2%;
+    min-height: 60vh;
+}
+
 
 /* --- Register Page --- */
 .register-container {
