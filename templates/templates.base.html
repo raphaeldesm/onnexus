@@ -17,12 +17,33 @@
                 <li><a href="/cursos/">Cursos</a></li>
             </ul>
             <div class="logo"><a href="/">onNexus</a></div>
-            <a href="/users/register" class="login-btn">Fazer Login</a>
+            <a href="#" class="login-btn" id="open-login-popup">Fazer Login</a>
         </nav>
         <div class="search-bar">
             <input type="text" placeholder="Buscar cursos...">
         </div>
     </header>
+    <!-- Login Popup -->
+    <div id="login-popup" class="login-popup-overlay" style="display:none;">
+        <div class="login-popup-box">
+            <button class="login-popup-close" id="close-login-popup">&times;</button>
+            <h2 class="login-popup-title">Bem-vindo(a) ao <span style="color:#a020f0;">on</span>Nexus</h2>
+            <p class="login-popup-desc">Para interagir com o site faça o seu login!</p>
+            <form class="login-popup-form">
+                <input type="text" placeholder="Email ou telefone" required>
+                <input type="password" placeholder="Digite sua senha" required>
+                <button type="submit" class="login-popup-btn">Entrar</button>
+            </form>
+            <div class="login-popup-links">
+                <span>Não tem conta? <a href="/users/register">Criar</a></span>
+                <a href="#" class="forgot-password-link">Esqueceu a senha?</a>
+            </div>
+            <div class="login-popup-social">
+                <button class="login-popup-facebook"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="height:20px;vertical-align:middle;"> Continue com Google</button>
+                <button class="login-popup-facebook"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/facebook.svg" alt="Facebook" style="height:20px;vertical-align:middle;"> Continue com Facebook</button>
+            </div>
+        </div>
+    </div>
     <main>
         {% block content %}{% endblock %}
     </main>
@@ -50,4 +71,141 @@
         <div class="footer-bottom">© onNexus 2025. Todos os direitos reservados.</div>
     </footer>
 </body>
+<style>
+/* Login Popup Styles */
+.login-popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+}
+.login-popup-box {
+    background: #fff;
+    border-radius: 40px;
+    padding: 40px 32px 32px 32px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+.login-popup-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #a020f0;
+    cursor: pointer;
+}
+.login-popup-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.login-popup-desc {
+    margin-bottom: 24px;
+    color: #444;
+}
+.login-popup-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+.login-popup-btn {
+    width: 100%;
+    background: #a020f0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background 0.2s;
+}
+.login-popup-btn:hover {
+    background: #7c1bb3;
+}
+.login-popup-links {
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.login-popup-links a {
+    text-decoration: none;
+    font-weight: 500;
+}
+.login-popup-links span a {
+    color: #333;
+    font-weight: bold;
+}
+.login-popup-links .forgot-password-link {
+    color: #a020f0;
+}
+.login-popup-links a:hover {
+    text-decoration: underline;
+}
+.login-popup-social button {
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+.login-popup-google:hover {
+    background: #f5f5f5;
+}
+.login-popup-facebook:hover {
+    background: #f0f4ff;
+}
+@media (max-width: 500px) {
+    .login-popup-box {
+        padding: 24px 8px 16px 8px;
+        max-width: 98vw;
+    }
+}
+</style>
+<script>
+// Login Popup JS
+document.addEventListener('DOMContentLoaded', function() {
+    var openBtn = document.getElementById('open-login-popup');
+    var closeBtn = document.getElementById('close-login-popup');
+    var popup = document.getElementById('login-popup');
+    if(openBtn && closeBtn && popup) {
+        openBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            popup.style.display = 'flex';
+        });
+        closeBtn.addEventListener('click', function() {
+            popup.style.display = 'none';
+        });
+        // Fechar ao clicar fora do box
+        popup.addEventListener('click', function(e) {
+            if(e.target === popup) popup.style.display = 'none';
+        });
+    }
+});
+</script>
 </html>
