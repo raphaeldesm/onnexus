@@ -37,4 +37,37 @@
         <a class="login2-btn" href="#">Faça login para prosseguir</a>
     </div>
 </div>
+<div class="courses-area2">
+	<h2 class="area-title">Cursos</h2>
+	<div class="courses-list">
+		{% for course in courses %}
+		<div class="course-card">
+			<div class="course-thumb">
+				{% if course.video_thumbnail %}
+					<img src="{{ course.video_thumbnail.url }}" alt="Thumbnail do curso">
+				{% else %}
+					<div class="thumb-placeholder">Não disponível</div>
+				{% endif %}
+			</div>
+			<div class="course-info">
+				<h3>{{ course.title }}</h3>
+				<p>{{ course.description }}</p>
+				<div class="instructor-info">
+					{% if course.instructor.profile_picture %}
+						<img class="instructor-avatar" src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}">
+					{% endif %}
+					<span>{{ course.instructor.name }}</span>
+				</div>
+				<div class="course-actions">
+					<span>★</span>
+					<span>♡</span>
+					<span>↻</span>
+				</div>
+			</div>
+		</div>
+		{% empty %}
+		<p>Nenhum curso cadastrado.</p>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}
