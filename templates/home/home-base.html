@@ -7,16 +7,8 @@
         compartilhe seus projetos com<br>
         a onNexus
     </h1>
-    <div class="search-bar2">
-        <input class="search-input" type="text" placeholder="Pesquisar para se inspirar">
-    </div>
-    <div class="buttons-filter">
-        <button class="filter-btn">1</button>
-        <button class="filter-btn">2</button>
-        <button class="filter-btn">3</button>
-        <button class="filter-btn">...</button>
-    </div>
     <div class="posts">
+        <h2 class="area-title2">Postagens</h2>
         <ul class="posts-list">
             {% for post in posts %}
             <li class="post">
@@ -34,11 +26,11 @@
             </li>
             {% endfor %}
         </ul>
-        <a class="login2-btn" href="#">Faça login para prosseguir</a>
+        
     </div>
 </div>
 <div class="courses-area2">
-	<h2 class="area-title">Cursos</h2>
+	<h2 class="area-title3">Cursos</h2>
 	<div class="courses-list">
 		{% for course in courses %}
 		<div class="course-card">
@@ -68,6 +60,7 @@
 		{% empty %}
 		<p>Nenhum curso cadastrado.</p>
 		{% endfor %}
+        <a class="login2-btn" href="#">Faça login para prosseguir</a>
 	</div>
 </div>
 {% endblock %}

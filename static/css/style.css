@@ -270,21 +270,22 @@ a {
     margin-top: .5em;
 }
 
-.search-bar2 {
-    display: flex;
-    justify-content: center;
-    margin-top: 4.3em;
-    padding: 0 5%;
+.area-title2 {
+    color: var(--dark-purple);
+    font-size: 1.5em;
+    margin-left: 1.7em;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-purple);
 }
 
-.search-input {
-    width: 100%;
-    max-width: 500px;
-    padding: 12px 178px;
-    border-radius: 25px;
-    border: 1px solid transparent;
-    font-size: 1rem;
-    outline: none;
+.area-title3 {
+    color: var(--dark-purple);
+    font-size: 1.5em;
+    margin-left: 1.7em;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-purple);
 }
 
 .filter-btn {
@@ -313,7 +314,7 @@ a {
 .posts {
     width: 100%;
     border-radius: 10px;
-    margin-top: 2.4em;
+    margin-top: 7em;
 }
 
 .posts-list {
@@ -378,13 +379,16 @@ a {
     box-shadow: 0 8px 25px rgba(138, 45, 226, 0.3);
 }
 
+.home-container {
+    margin-top: 6em;
+}
+
 .home-courses {
     padding: 75px 2.1%;
     min-height: 30vh;
 }
 
 .courses-area2 {
-    padding: 50px 2.2%;
     min-height: 60vh;
 }
 
