@@ -9,7 +9,7 @@
             <button class="social-btn facebook"></button>
         </div>
         <div class="divider">ou</div>
-        <p class="login-link">Já tem uma conta? <a href="/users/login">Entrar</a></p>
+        <p class="login-link">Não tem uma conta? <a href="/users/register">Cadastrar</a></p>
         <form method="POST">
             {% csrf_token %}
             <div class="row">
@@ -19,7 +19,7 @@
                 </div>
                 {% endfor %}                     
             </div>
-            <button type="submit" class="submit-btn">Criar conta</button>
+            <button type="submit" class="submit-btn">Fazer login</button>
         </form>
     </div>
 </div>
