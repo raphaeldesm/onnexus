@@ -1,13 +1,13 @@
 from django import forms
 
 class LoginForms(forms.Form):
-    email = forms.EmailField(
+    username = forms.CharField(
         required=True,
         max_length=100,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Email'
+                'placeholder': 'Nome Completo'
             }
         )
     )
@@ -35,11 +35,6 @@ class RegisterForms(forms.Form):
                 'placeholder': 'Nome Completo'
             }
         )
-    )
-    phone_number = forms.CharField(
-        required=True,
-        max_length=11,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Telefone'})
     )
     email = forms.EmailField(
         required=True,

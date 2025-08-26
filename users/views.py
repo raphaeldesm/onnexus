@@ -14,21 +14,21 @@ def login(request):
         form = LoginForms(request.POST)
 
         if form.is_valid():
-            email=form["email"].value()
+            username=form["username"].value()
             password=form["password"].value()
 
             user = auth.authenticate(
                 request, 
-                email=email,
+                username=username,
                 password=password
             )
             if user is not None:
                 auth.login(request, user)
                 messages.success(request, 'Login realizado com sucesso')
-                return redirect('home')
+                return redirect('/')
             else:
                 messages.error(request, 'Email ou senha incorretos')
-                return redirect('home')
+                return redirect('/users/login')
             
 
     return render(request, 'users/login.html', {'form': form})
@@ -41,7 +41,6 @@ def register(request):
 
         if form.is_valid():
             username=form["username"].value()
-            phone_number=form["phone_number"].value()
             email=form["email"].value()
             password=form["password"].value()
 
@@ -49,10 +48,10 @@ def register(request):
                 messages.error(request, 'Usuário já existe')
                 return redirect('register')
             
-            user = User.objects.create_user(username=username, phone_number=phone_number, email=email, password=password)
+            user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
             messages.success(request, 'Usuário cadastrado com sucesso')
-            return redirect('login')
+            return redirect('/users/login')
 
 
     return render(request, 'users/register.html', {'form': form})
