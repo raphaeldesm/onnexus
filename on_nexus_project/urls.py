@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('explore/', include('explore.urls')), # Aponta para o app de exploração)
     path('cursos/', include('courses.urls')), # Aponta para o app de cursos
     path('users/', include('users.urls')), # Aponta para o app de usuários
     path('', include('home.urls')), # Aponta para o app de home

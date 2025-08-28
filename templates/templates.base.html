@@ -7,12 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>onNexus</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
     <header class="header">
         <nav class="navbar">
             <ul class="nav-list">
-                <li><a href="#">Explorar</a></li>
+                <li><a href="/explore">Explorar</a></li>
                 <li><a href="#">Contratar</a></li>
                 <li><a href="/cursos/">Cursos</a></li>
             </ul>
@@ -21,6 +19,11 @@
         </nav>
     </header>
     <main>
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
         {% block content %}{% endblock %}
     </main>
     <footer class="footer">

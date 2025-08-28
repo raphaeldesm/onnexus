@@ -1,0 +1,25 @@
+{% extends 'templates.base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="posts-area">
+    <h2 class="area-title2">Postagens</h2>
+    <ul class="posts-list">
+        {% for post in posts %}
+        <li class="post">
+            <a href="#">
+                <img class="post-image" src="{{ post.image.url }}" alt="">
+            </a>
+            <div class="post-info">
+                <img class="profile-image" src="{% static '/images/' %}{{post.profile}}" alt="">
+                <p>{{ post.username }}</p>
+                <img class="post-icons" src="{% static '/images/favorites.png' %}" alt="">
+                <p>{{ post.favorites }}</p>
+                <img class="post-icons" src="{% static '/images/views.png' %}" alt="">
+                <p>{{ post.views }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
