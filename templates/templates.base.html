@@ -17,7 +17,14 @@
             <div class="logo"><a href="/">onNexus</a></div>
             <div>
                 {% if user.is_authenticated %}
-                    <a href="{% url 'users:logout_view' %}">Sair</a>
+                    <div class="profile-menu-container">
+                        <img src="{{ user.userprofile.profile_picture.url }}" alt="Perfil" class="profile-avatar" onclick="toggleProfileMenu()">
+                        <div id="profile-menu" class="profile-menu">
+                            <a href="{% url 'users:edit_profile' %}">Editar Perfil</a>
+                            <a href="{% url 'users:account_settings' %}">Configurações</a>
+                            <a href="{% url 'users:logout_view' %}">Sair</a>
+                        </div>
+                    </div>
                 {% else %}
                     <a href="/users/login" class="login-btn">Fazer Login</a>
                 {% endif %}
@@ -55,5 +62,27 @@
         </div>
         <div class="footer-bottom">© onNexus 2025. Todos os direitos reservados.</div>
     </footer>
+    <script>
+        function toggleProfileMenu() {
+            var menu = document.getElementById("profile-menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.profile-avatar')) {
+                var dropdowns = document.getElementsByClassName("profile-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>

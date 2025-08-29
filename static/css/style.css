@@ -649,6 +649,41 @@ a {
     --bs-alert-border-color: #c3e6cb;
 }
 
+/* --- Profile Menu --- */
+.profile-menu-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.profile-menu a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-menu a:hover {
+    background-color: #f1f1f1;
+}
+
 /* --- Responsive --- */
 @media (max-width: 900px) {
     .course-card {
