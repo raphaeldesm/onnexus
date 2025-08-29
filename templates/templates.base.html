@@ -20,6 +20,9 @@
                     <div class="profile-menu-container">
                         <img src="{{ user.userprofile.profile_picture.url }}" alt="Perfil" class="profile-avatar" onclick="toggleProfileMenu()">
                         <div id="profile-menu" class="profile-menu">
+                            <div class="profile-menu-header">
+                                <p>Bem-vindo, {{ user.username }}</p>
+                            </div>
                             <a href="{% url 'users:edit_profile' %}">Editar Perfil</a>
                             <a href="{% url 'users:account_settings' %}">Configurações</a>
                             <a href="{% url 'users:logout_view' %}">Sair</a>

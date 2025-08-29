@@ -673,6 +673,17 @@ a {
     border-radius: 8px;
 }
 
+.profile-menu-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-menu-header p {
+    margin: 0;
+    color: #a0a0a0;
+    font-weight: bold;
+}
+
 .profile-menu a {
     color: black;
     padding: 12px 16px;

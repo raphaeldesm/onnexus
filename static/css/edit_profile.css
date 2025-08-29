@@ -41,9 +41,16 @@ body {
 .sidebar ul li a {
     text-decoration: none;
     color: #333;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
     border-radius: 4px;
+}
+
+.sidebar ul li a::after {
+    content: '>';
+    color: #ccc;
 }
 
 .sidebar ul li.active a {
