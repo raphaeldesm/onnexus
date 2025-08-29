@@ -8,6 +8,7 @@
 <div class="profile-container">
     <div class="sidebar">
         <h2>Informações do Perfil</h2>
+        <p class="username-display">{{ user.username }}</p>
         <ul>
             <li class="active"><a href="{% url 'users:edit_profile' %}">Editar Perfil</a></li>
             <li><a href="#">Forma de Pagamento</a></li>
@@ -23,9 +24,9 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="profile-picture">
-                <img src="{{ user.userprofile.profile_picture.url }}" alt="Foto do Perfil">
-                <a href="#">Alterar foto</a>
-                {{ form.profile_picture }}
+                <img id="profile-pic-preview" src="{{ user.userprofile.profile_picture.url }}" alt="Foto do Perfil">
+                <label for="id_profile_picture" class="change-pic-link">Alterar foto</label>
+                <div style="display:none;">{{ form.profile_picture }}</div>
             </div>
             <div class="form-fields">
                 <div class="form-row">
@@ -65,4 +66,18 @@
         </form>
     </div>
 </div>
+<script>
+document.getElementById('id_profile_picture').onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('profile-pic-preview').src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+}
+</script>
 {% endblock %}
