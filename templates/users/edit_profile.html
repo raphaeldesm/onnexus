@@ -1,0 +1,68 @@
+{% extends 'templates.base.html' %}
+{% load static %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+<div class="profile-container">
+    <div class="sidebar">
+        <h2>Informações do Perfil</h2>
+        <ul>
+            <li class="active"><a href="{% url 'users:edit_profile' %}">Editar Perfil</a></li>
+            <li><a href="#">Forma de Pagamento</a></li>
+            <li><a href="{% url 'users:social_links' %}">Links e Redes Sociais</a></li>
+            <li><a href="{% url 'users:account_settings' %}">Configurações da Conta</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a href="#">Excluir Conta</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <h2>Editar Perfil</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-picture">
+                <img src="{{ user.userprofile.profile_picture.url }}" alt="Foto do Perfil">
+                <a href="#">Alterar foto</a>
+                {{ form.profile_picture }}
+            </div>
+            <div class="form-fields">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_first_name">Nome</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_last_name">Sobrenome</label>
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_occupation">Ocupação</label>
+                    {{ form.occupation }}
+                </div>
+                <div class="form-group">
+                    <label for="id_company">Empresa</label>
+                    {{ form.company }}
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="id_location">Localização</label>
+                        {{ form.location }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_city">Cidade</label>
+                        {{ form.city }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="id_bio">Bio</label>
+                    {{ form.bio }}
+                </div>
+                <button type="submit" class="save-button">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

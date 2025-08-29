@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from users.forms import LoginForms, RegisterForms
+from users.forms import LoginForms, RegisterForms, ProfileForm, SocialLinksForm, AccountSettingsForm
 
 from django.contrib.auth.models import User
 
@@ -9,6 +9,9 @@ from django.contrib import auth, messages
 from django.contrib.auth import logout
 
 from django.views import View
+
+from django.contrib.auth.decorators import login_required
+from .models import UserProfile
 
 
 # Create your views here.
@@ -72,4 +75,53 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Logout realizado com sucesso')
     return redirect('/')
+
+@login_required
+def edit_profile(request):
+    try:
+        profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile.objects.create(user=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso!')
+            return redirect('edit_profile')
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'users/edit_profile.html', {'form': form})
+
+@login_required
+def social_links(request):
+    try:
+        profile = request.user.userprofile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile.objects.create(user=request.user)
+
+    if request.method == 'POST':
+        form = SocialLinksForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Links e redes sociais atualizados com sucesso!')
+            return redirect('social_links')
+    else:
+        form = SocialLinksForm(instance=profile)
+
+    return render(request, 'users/social_links.html', {'form': form})
+
+@login_required
+def account_settings(request):
+    if request.method == 'POST':
+        form = AccountSettingsForm(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Configurações da conta atualizadas com sucesso!')
+            return redirect('account_settings')
+    else:
+        form = AccountSettingsForm(user=request.user)
+
+    return render(request, 'users/account_settings.html', {'form': form})
 
