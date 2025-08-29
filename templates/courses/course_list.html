@@ -33,6 +33,8 @@
 		<p>Nenhum curso cadastrado.</p>
 		{% endfor %}
 	</div>
-	<button class="add-course-btn">Fazer login para adicionar curso</button>
+	{% if user.is_authenticated is not True %}
+	<a class="login2-btn" href="/users/login/">Fazer login para adicionar curso</a>
+	{% endif %}
 </div>
 {% endblock %}
