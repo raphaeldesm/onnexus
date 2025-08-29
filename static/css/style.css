@@ -643,6 +643,12 @@ a {
     --bs-alert-border-color: #f5c2c7;
 }
 
+.alert-success {
+    --bs-alert-color: #27ae60;
+    --bs-alert-bg: #d4edda;
+    --bs-alert-border-color: #c3e6cb;
+}
+
 /* --- Responsive --- */
 @media (max-width: 900px) {
     .course-card {

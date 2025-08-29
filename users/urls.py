@@ -1,11 +1,13 @@
 from django.urls import path
-from . import views
+from .views import register, login, logout_view, password_reset, password_recovery_code
+
 
 app_name = 'users'
 
 urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('password_reset/', views.password_reset, name='password_reset'),
-    path('password_recovery_code/', views.password_recovery_code, name='password_recovery_code'),
+    path('register/', register, name='register'),
+    path('login/', login, name='login'),
+    path('logout', logout_view, name='logout_view'),
+    path('password_reset/', password_reset, name='password_reset'),
+    path('password_recovery_code/', password_recovery_code, name='password_recovery_code'),
 ]

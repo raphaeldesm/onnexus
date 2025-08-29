@@ -60,7 +60,9 @@
 		{% empty %}
 		<p>Nenhum curso cadastrado.</p>
 		{% endfor %}
+		{% if user.is_authenticated is not True %}
         <a class="login2-btn" href="/users/login/">Faça login para prosseguir</a>
+		{% endif %}
 	</div>
 </div>
 {% endblock %}

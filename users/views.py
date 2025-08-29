@@ -6,6 +6,11 @@ from django.contrib.auth.models import User
 
 from django.contrib import auth, messages
 
+from django.contrib.auth import logout
+
+from django.views import View
+
+
 # Create your views here.
 def login(request):
     form = LoginForms()
@@ -62,3 +67,9 @@ def password_reset(request):
 
 def password_recovery_code(request):
     return render(request, 'users/password_recovery_code.html')
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Logout realizado com sucesso')
+    return redirect('/')
+

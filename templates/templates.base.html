@@ -16,8 +16,11 @@
             </ul>
             <div class="logo"><a href="/">onNexus</a></div>
             <div>
-                <a href="/users/login" class="login-btn">Fazer Login</a>
-                <a href="#">Sair</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'users:logout_view' %}">Sair</a>
+                {% else %}
+                    <a href="/users/login" class="login-btn">Fazer Login</a>
+                {% endif %}
             </div>
         </nav>
     </header>

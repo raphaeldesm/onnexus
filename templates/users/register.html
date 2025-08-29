@@ -10,7 +10,7 @@
         </div>
         <div class="divider">ou</div>
         <p class="login-link">Já tem uma conta? <a href="/users/login">Entrar</a></p>
-        <form method="POST">
+        <form method="post">
             {% csrf_token %}
             <div class="row">
                 {% for field in form.visible_fields %}
