@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <h2>Informações do Perfil</h2>
+    <ul>
+        <li class="{% if request.resolver_match.url_name == 'edit_profile' %}active{% endif %}"><a href="{% url 'users:edit_profile' %}">Editar Perfil</a></li>
+        <li class="{% if request.resolver_match.url_name == 'payment_methods' %}active{% endif %}"><a href="{% url 'users:payment_methods' %}">Forma de Pagamento</a></li>
+        <li class="{% if request.resolver_match.url_name == 'social_links' %}active{% endif %}"><a href="{% url 'users:social_links' %}">Links e Redes Sociais</a></li>
+        <li class="{% if request.resolver_match.url_name == 'account_settings' %}active{% endif %}"><a href="{% url 'users:account_settings' %}">Configurações da Conta</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="#">Excluir Conta</a>
+    </div>
+</div>

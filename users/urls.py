@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register, login, logout_view, password_reset, password_recovery_code, edit_profile, social_links, account_settings
+from .views import register, login, logout_view, password_reset, password_recovery_code, edit_profile, social_links, account_settings, payment_methods
 
 
 app_name = 'users'
@@ -13,4 +13,5 @@ urlpatterns = [
     path('edit_profile/', edit_profile, name='edit_profile'),
     path('social_links/', social_links, name='social_links'),
     path('account_settings/', account_settings, name='account_settings'),
+    path('payment_methods/', payment_methods, name='payment_methods'),
 ]

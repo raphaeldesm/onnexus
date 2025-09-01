@@ -6,23 +6,16 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
 <div class="profile-container">
-    <div class="sidebar">
-        <h2>Informações do Perfil</h2>
-        <ul>
-            <li><a href="{% url 'users:edit_profile' %}">Editar Perfil</a></li>
-            <li><a href="#">Forma de Pagamento</a></li>
-            <li><a href="{% url 'users:social_links' %}">Links e Redes Sociais</a></li>
-            <li class="active"><a href="{% url 'users:account_settings' %}">Configurações da Conta</a></li>
-        </ul>
-        <div class="sidebar-footer">
-            <a href="#">Excluir Conta</a>
-        </div>
-    </div>
+    {% include 'users/partials/_sidebar.html' %}
     <div class="main-content">
         <h2>Configurações da Conta</h2>
         <form method="post">
             {% csrf_token %}
             <div class="form-fields">
+                <div class="form-group">
+                    <label for="id_username">Nome de usuário</label>
+                    {{ form.username }}
+                </div>
                 <div class="form-group">
                     <label for="id_email">E-mail</label>
                     {{ form.email }}

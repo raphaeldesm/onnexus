@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 
 class LoginForms(forms.Form):
-    username = forms.CharField(
+    email = forms.EmailField(
         required=True,
         max_length=100,
-        widget=forms.TextInput(
+        widget=forms.EmailInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Nome Completo'
+                'placeholder': 'exemplo@email.com'
             }
         )
     )
@@ -74,13 +74,21 @@ class ProfileForm(forms.ModelForm):
         user = self.instance.user
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-        if commit:
-            user.save()
+
         profile = super(ProfileForm, self).save(commit=False)
+        profile.occupation = self.cleaned_data['occupation']
+        profile.company = self.cleaned_data['company']
+        profile.location = self.cleaned_data['location']
+        profile.city = self.cleaned_data['city']
+        profile.bio = self.cleaned_data['bio']
+
         if 'profile_picture' in self.files:
             profile.profile_picture = self.cleaned_data['profile_picture']
+        
         if commit:
+            user.save()
             profile.save()
+            
         return profile
 
 class SocialLinksForm(forms.ModelForm):
@@ -98,6 +106,7 @@ class SocialLinksForm(forms.ModelForm):
         }
 
 class AccountSettingsForm(forms.Form):
+    username = forms.CharField(required=True, label='Nome de usuário', widget=forms.TextInput(attrs={'placeholder': 'Digite seu nome de usuário'}))
     email = forms.EmailField(required=True, label='E-mail', widget=forms.EmailInput(attrs={'placeholder': 'Digite seu melhor e-mail'}))
     contact_number = forms.CharField(max_length=20, required=False, label='Contato', widget=forms.TextInput(attrs={'placeholder': '(00) 000-000-000'}))
     new_password = forms.CharField(required=False, label='Nova senha', widget=forms.PasswordInput(attrs={'placeholder': 'Criar nova senha', 'autocomplete': 'new-password'}))
@@ -107,6 +116,7 @@ class AccountSettingsForm(forms.Form):
         self.user = kwargs.pop('user', None)
         super(AccountSettingsForm, self).__init__(*args, **kwargs)
         if self.user:
+            self.fields['username'].initial = self.user.username
             self.fields['email'].initial = self.user.email
             if hasattr(self.user, 'userprofile'):
                 self.fields['contact_number'].initial = self.user.userprofile.whatsapp_number
@@ -122,6 +132,7 @@ class AccountSettingsForm(forms.Form):
 
     def save(self, commit=True):
         user = self.user
+        user.username = self.cleaned_data['username']
         user.email = self.cleaned_data['email']
         
         new_password = self.cleaned_data.get("new_password")

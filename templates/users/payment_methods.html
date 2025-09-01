@@ -1,0 +1,30 @@
+{% extends 'templates.base.html' %}
+{% load static %}
+
+{% block title %}Formas de Pagamento{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/payment_methods.css' %}">
+<div class="profile-container">
+    {% include 'users/partials/_sidebar.html' %}
+    <div class="main-content">
+        <h2>Forma de Pagamento</h2>
+        <div class="payment-methods">
+            <div class="payment-method">
+                <img src="{% static 'images/bank_transfer.jpg' %}" alt="Transferência Bancária">
+                <span>Transferência Bancária</span>
+            </div>
+            <div class="payment-method">
+                <img src="{% static 'images/pix.png' %}" alt="PIX">
+                <span>PIX</span>
+            </div>
+            <div class="payment-method">
+                <img src="{% static 'images/paypal.png' %}" alt="PayPal">
+                <span>PayPal</span>
+            </div>
+        </div>
+        <button type="submit" class="save-button">Salvar</button>
+    </div>
+</div>
+{% endblock %}

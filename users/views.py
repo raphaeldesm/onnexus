@@ -13,6 +13,10 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 
+@login_required
+def payment_methods(request):
+    return render(request, 'users/payment_methods.html')
+
 
 # Create your views here.
 def login(request):
@@ -22,22 +26,27 @@ def login(request):
         form = LoginForms(request.POST)
 
         if form.is_valid():
-            username=form["username"].value()
-            password=form["password"].value()
+            email=form.cleaned_data["email"]
+            password=form.cleaned_data["password"]
 
-            user = auth.authenticate(
-                request, 
-                username=username,
-                password=password
-            )
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                user = None
+
             if user is not None:
-                auth.login(request, user)
-                messages.success(request, 'Login realizado com sucesso')
-                return redirect('/')
-            else:
-                messages.error(request, 'Email ou senha incorretos')
-                return redirect('/users/login')
+                authenticated_user = auth.authenticate(
+                    request, 
+                    username=user.username,
+                    password=password
+                )
+                if authenticated_user is not None:
+                    auth.login(request, authenticated_user)
+                    messages.success(request, 'Login realizado com sucesso')
+                    return redirect('/')
             
+            messages.error(request, 'Email ou senha incorretos')
+            return redirect('/users/login')
 
     return render(request, 'users/login.html', {'form': form})
 
@@ -106,7 +115,7 @@ def social_links(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Links e redes sociais atualizados com sucesso!')
-            return redirect('social_links')
+            return redirect('users:social_links')
     else:
         form = SocialLinksForm(instance=profile)
 
