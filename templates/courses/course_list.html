@@ -7,25 +7,34 @@
 		{% for course in courses %}
 		<div class="course-card">
 			<div class="course-thumb">
+				<a href="{% url 'courses:course_detail' course.pk %}">
 				{% if course.video_thumbnail %}
 					<img src="{{ course.video_thumbnail.url }}" alt="Thumbnail do curso">
 				{% else %}
-					<div class="thumb-placeholder">Não disponível</div>
+					<div class="thumb-placeholder">img</div>
 				{% endif %}
+				</a>
 			</div>
 			<div class="course-info">
-				<h3>{{ course.title }}</h3>
-				<p>{{ course.description }}</p>
 				<div class="instructor-info">
 					{% if course.instructor.profile_picture %}
 						<img class="instructor-avatar" src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}">
 					{% endif %}
 					<span>{{ course.instructor.name }}</span>
 				</div>
-				<div class="course-actions">
-					<span>★</span>
-					<span>♡</span>
-					<span>↻</span>
+				<a href="{% url 'courses:course_detail' course.pk %}">
+					<h3>{{ course.title }}</h3>
+				</a>
+				<p>{{ course.description|truncatewords:20 }}</p>
+				<div class="course-meta">
+					<div class="course-rating">
+						<span>★★★★★</span>
+					</div>
+					<div class="course-actions">
+						{% if course.is_buyable %}
+						<a href="#" class="buy-button">Comprar</a>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</div>

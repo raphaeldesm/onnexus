@@ -12,6 +12,7 @@ class Course(models.Model):
     description = models.TextField()
     video_thumbnail = models.ImageField(upload_to='thumbnails/')
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name='courses')
+    is_buyable = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

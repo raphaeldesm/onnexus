@@ -202,7 +202,13 @@ a {
     gap: 18px;
     font-size: 1.3em;
     color: var(--primary-purple);
-    margin-top: auto; /* Pushes to the bottom */
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
 }
 
 .add-course-btn {
