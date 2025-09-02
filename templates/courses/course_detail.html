@@ -1,0 +1,62 @@
+{% extends "base.html" %}% extends "templates.base.html" %}
+{% load static %}
+
+{% block title %}{{ course.title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/course_detail.css' %}">
+
+<div class="course-detail-container">
+    <div class="course-sidebar">
+        <div class="sidebar-header">
+            <h3>{{ course.title }}</h3>
+        </div>
+        <ul>
+            <li class="active"><a href="#">Apresentação</a></li>
+            <li>
+                <a href="#">Conteúdo</a>
+                <ul class="sub-menu">
+                    <li><a href="#">Primeiro contato</a></li>
+                    <li><a href="#">Ferramentas</a></li>
+                    <li><a href="#">Luz, sombra e cor</a></li>
+                    <li><a href="#">Manipulação</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="course-main-content">
+        <div class="content-header">
+            <a href="{% url 'courses:course_list' %}" class="back-link"><</a>
+            <h2>Apresentação</h2>
+        </div>
+        
+        <div class="course-intro">
+            <h1>Sobre o curso: {{ course.title }}</h1>
+            <p class="subtitle">{{ course.subtitle }}</p>
+            <p>{{ course.description }}</p>
+        </div>
+
+        <div class="learning-points">
+            <h3>O que você vai aprender:</h3>
+            {{ course.what_you_will_learn|linebreaksbr }}
+        </div>
+
+        <div class="course-meta-info">
+            <p><strong>Formato:</strong> {{ course.course_format }}</p>
+            <p><strong>Nível:</strong> {{ course.level }}</p>
+            <p><strong>Pré-requisitos:</strong> {{ course.prerequisites }}</p>
+        </div>
+
+        <div class="instructor-details">
+            <h3>Sobre o criador</h3>
+            <div class="instructor-bio">
+                <img src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}">
+                <div>
+                    <h4>{{ course.instructor.name }}</h4>
+                    <p>{{ course.instructor.bio }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
