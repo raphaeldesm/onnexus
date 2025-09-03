@@ -22,3 +22,37 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+class Module(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
+    title = models.CharField(max_length=200)
+    order = models.PositiveIntegerField()
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f'{self.order}. {self.title}'
+
+class Content(models.Model):
+    module = models.ForeignKey(Module, on_delete=models.CASCADE, related_name='contents')
+    title = models.CharField(max_length=200)
+    order = models.PositiveIntegerField()
+    
+    CONTENT_CHOICES = [
+        ('video', 'Vídeo'),
+        ('text', 'Texto'),
+        ('file', 'Arquivo'),
+    ]
+    content_type = models.CharField(max_length=10, choices=CONTENT_CHOICES)
+    
+    # Campos específicos para cada tipo de conteúdo
+    video_url = models.URLField(blank=True, null=True)
+    text_content = models.TextField(blank=True, null=True)
+    file_content = models.FileField(upload_to='course_files/', blank=True, null=True)
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return f'{self.order}. {self.title}'

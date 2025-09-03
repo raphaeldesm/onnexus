@@ -26,6 +26,7 @@ urlpatterns = [
     path('explore/', include('explore.urls')), # Aponta para o app de exploração)
     path('cursos/', include('courses.urls')), # Aponta para o app de cursos
     path('users/', include('users.urls')), # Aponta para o app de usuários
+    path('payments/', include('payments.urls')), # Aponta para o app de pagamentos
     path('', include('home.urls')), # Aponta para o app de home
 ]
 

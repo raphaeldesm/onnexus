@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ content.title }} - {{ course.title }}{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/course_content.css' %}">
+
+<div class="course-content-container">
+    <div class="course-sidebar">
+        <div class="sidebar-header">
+            <h3>{{ course.title }}</h3>
+        </div>
+        <ul>
+            <li><a href="{% url 'courses:course_detail' course.pk %}">Apresentação</a></li>
+            {% for module in course.modules.all %}
+            <li {% if content.module.id = module.id %}class="active"{% endif %}>
+                <a href="{% url 'courses:content_detail' course.pk item.pk %}">{{ module.title }}</a>
+                <ul class="sub-menu">
+                    {% for item in module.contents.all %}
+                    <li {% if item.id = content.id %}class="active"{% endif %}>
+                        <a href="{% url 'courses:content_detail' course.pk item.pk %}">{{ item.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="course-main-content">
+        <div class="content-header">
+            <a href="{% url 'courses:course_detail' course.pk %}" class="back-link"><i class="fas fa-chevron-left"></i></a>
+            <h2>{{ content.title }}</h2>
+        </div>
+
+        <div class="content-viewer">
+            {% if content.content_type == 'video' and content.video_url %}
+                <div class="video-container">
+                    <iframe src="{{ content.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            {% elif content.content_type == 'text' and content.text_content %}
+                <div class="text-content">
+                    {{ content.text_content|linebreaks }}
+                </div>
+            {% elif content.content_type == 'file' and content.file_content %}
+                <div class="file-content">
+                    <a href="{{ content.file_content.url }}" download class="download-btn">
+                        <i class="fas fa-download"></i> Baixar arquivo: {{ content.title }}
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="content-navigation">
+            {% if prev_content %}
+                <a href="{% url 'courses:content_detail' course.pk prev_content.pk %}" class="nav-btn prev">Anterior</a>
+            {% else %}
+                <span class="nav-btn prev disabled">Anterior</span>
+            {% endif %}
+            {% if next_content %}
+                <a href="{% url 'courses:content_detail' course.pk next_content.pk %}" class="nav-btn next">Próximo</a>
+            {% else %}
+                <span class="nav-btn next disabled">Próximo</span>
+            {% endif %}
+        </div>
+
+        <div class="comments-section">
+            <h3>Avaliações e Comentários</h3>
+            <div class="rating-stars">
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+                <i class="far fa-star"></i>
+            </div>
+            <form class="comment-form">
+                <textarea placeholder="Digite seu comentário"></textarea>
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+            <div class="comments-list">
+                <div class="comment">
+                    <div class="comment-author">
+                        <img src="{% static 'images/avatar.jpg' %}" alt="Flávia Kakijima">
+                        <span>Flávia Kakijima</span>
+                    </div>
+                    <div class="comment-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>Simplesmente sensacional! O curso de Photoshop superou todas as minhas expectativas. As aulas são bem explicadas, com uma didática clara e exemplos práticos que facilitam o aprendizado.</p>
+                </div>
+                <div class="comment">
+                    <div class="comment-author">
+                        <img src="{% static 'images/avatar.jpg' %}" alt="Karmen Kioto">
+                        <span>Karmen Kioto</span>
+                    </div>
+                    <div class="comment-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>Muito bom! Aprendi técnicas que sempre quis dominar no Photoshop. Conteúdo direto ao ponto e fácil de acompanhar. Vale a pena!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <header class="header">
         <nav class="navbar">
-            <ul class="nav-list">
-                <li><a href="/explore">Explorar</a></li>
-                <li><a href="#">Contratar</a></li>
-                <li><a href="/cursos/">Cursos</a></li>
-            </ul>
-            <div class="logo"><a href="/">onNexus</a></div>
-            <div>
+            <div class="nav-left">
+                <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+                <div class="logo"><a href="/">onNexus</a></div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar para se inspirar">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-right">
                 {% if user.is_authenticated %}
                     <div class="profile-menu-container">
                         <img src="{{ user.userprofile.profile_picture.url }}" alt="Perfil" class="profile-avatar" onclick="toggleProfileMenu()">
@@ -34,6 +36,11 @@
             </div>
         </nav>
     </header>
+    <div id="sidebar-menu" class="sidebar-menu">
+        <a href="/explore">Explorar</a>
+        <a href="#">Contratar</a>
+        <a href="/cursos/">Cursos</a>
+    </div>
     <main>
         {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -75,6 +82,15 @@
             }
         }
 
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar-menu");
+            if (sidebar.style.display === "block") {
+                sidebar.style.display = "none";
+            } else {
+                sidebar.style.display = "block";
+            }
+        }
+
         window.onclick = function(event) {
             if (!event.target.matches('.profile-avatar')) {
                 var dropdowns = document.getElementsByClassName("profile-menu");
@@ -83,6 +99,12 @@
                     if (openDropdown.style.display === "block") {
                         openDropdown.style.display = "none";
                     }
+                }
+            }
+            if (!event.target.matches('.menu-btn')) {
+                var sidebar = document.getElementById("sidebar-menu");
+                if (sidebar.style.display === "block" && !sidebar.contains(event.target)) {
+                    sidebar.style.display = "none";
                 }
             }
         }

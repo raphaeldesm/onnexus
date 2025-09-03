@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'courses',
     'home',
+    'payments',
 ]
 
 MIDDLEWARE = [

@@ -12,21 +12,22 @@
             <h3>{{ course.title }}</h3>
         </div>
         <ul>
-            <li class="active"><a href="#">Apresentação</a></li>
+            <li class="active"><a href="{% url 'courses:course_detail' course.pk %}">Apresentação</a></li>
+            {% for module in course.modules.all %}
             <li>
-                <a href="#">Conteúdo</a>
+                <a href="#">{{ module.title }}</a>
                 <ul class="sub-menu">
-                    <li><a href="#">Primeiro contato</a></li>
-                    <li><a href="#">Ferramentas</a></li>
-                    <li><a href="#">Luz, sombra e cor</a></li>
-                    <li><a href="#">Manipulação</a></li>
+                    {% for content in module.contents.all %}
+                    <li><a href="{% url 'courses:content_detail' content.pk %}">{{ content.title }}</a></li>
+                    {% endfor %}
                 </ul>
             </li>
+            {% endfor %}
         </ul>
     </div>
     <div class="course-main-content">
         <div class="content-header">
-            <a href="{% url 'courses:course_list' %}" class="back-link"><</a>
+            <a href="{% url 'courses:course_list' %}" class="back-link"><i class="fas fa-arrow-left"></i></a>
             <h2>Apresentação</h2>
         </div>
         
@@ -60,3 +61,4 @@
     </div>
 </div>
 {% endblock %}
+
