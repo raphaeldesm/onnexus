@@ -1,84 +1,113 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="courses-area">
-    <h2 class="area-title">Cursos Pagos</h2>
-    <div class="courses-list">
-        {% for course in paid_courses %}
-        <div class="course-card">
-            <div class="course-thumb">
-                <a href="{% url 'courses:course_detail' course.pk %}">
-                {% if course.video_thumbnail %}
-                    <img src="{{ course.video_thumbnail.url }}" alt="Thumbnail do curso">
-                {% else %}
-                    <div class="thumb-placeholder">img</div>
-                {% endif %}
-                </a>
-            </div>
-            <div class="course-info">
-                <div class="instructor-info">
-                    {% if course.instructor.profile_picture %}
-                        <img class="instructor-avatar" src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}">
-                    {% endif %}
-                    <span>{{ course.instructor.name }}</span>
-                </div>
-                <a href="{% url 'courses:course_detail' course.pk %}">
-                    <h3>{{ course.title }}</h3>
-                </a>
-                <p>{{ course.description|truncatewords:20 }}</p>
-                <div class="course-meta">
-                    <div class="course-rating">
-                        <span>★★★★★</span>
-                    </div>
-                    <div class="course-actions">
-                        <a href="{% url 'payments:payment_page' course.id %}" class="buy-button">Comprar</a>
-                    </div>
-                </div>
-            </div>
+  <h2 class="area-title">Cursos Pagos</h2>
+  <div class="courses-list">
+    {% for course in paid_courses %}
+    <div class="course-card">
+      <div class="course-thumb">
+          {% if course.video_thumbnail %}
+          <img
+            src="{{ course.video_thumbnail.url }}"
+            alt="Thumbnail do curso"
+          />
+          {% else %}
+          <div class="thumb-placeholder">img</div>
+          {% endif %}
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="instructor-info">
+          {% if course.instructor.profile_picture %}
+          <img
+            class="instructor-avatar"
+            src="{{ course.instructor.profile_picture.url }}"
+            alt="{{ course.instructor.name }}"
+          />
+          {% endif %}
+          <span>{{ course.instructor.name }}</span>
         </div>
-        {% empty %}
-        <p>Nenhum curso pago cadastrado.</p>
-        {% endfor %}
-    </div>
-
-    <h2 class="area-title" style="margin-top: 60px;">Cursos Livres</h2>
-    <div class="courses-list">
-        {% for course in free_courses %}
-        <div class="course-card">
-            <div class="course-thumb">
-                <a href="{% url 'courses:course_detail' course.pk %}">
-                {% if course.video_thumbnail %}
-                    <img src="{{ course.video_thumbnail.url }}" alt="Thumbnail do curso">
-                {% else %}
-                    <div class="thumb-placeholder">img</div>
-                {% endif %}
-                </a>
-            </div>
-            <div class="course-info">
-                <div class="instructor-info">
-                    {% if course.instructor.profile_picture %}
-                        <img class="instructor-avatar" src="{{ course.instructor.profile_picture.url }}" alt="{{ course.instructor.name }}">
-                    {% endif %}
-                    <span>{{ course.instructor.name }}</span>
-                </div>
-                <a href="{% url 'courses:course_detail' course.pk %}">
-                    <h3>{{ course.title }}</h3>
-                </a>
-                <p>{{ course.description|truncatewords:20 }}</p>
-                <div class="course-meta">
-                    <div class="course-rating">
-                        <span>★★★★★</span>
-                    </div>
-                </div>
-            </div>
+          <h3>{{ course.title }}</h3>
+        </a>
+        <p>{{ course.description|truncatewords:20 }}</p>
+        <div class="course-meta">
+          <div class="course-rating">
+            <span>★★★★★</span>
+          </div>
+          <div class="course-actions">
+            {% if user.is_authenticated %}
+            <a
+              href="{% url 'payments:payment_page' course.id %}"
+              class="buy-button"
+              >Comprar</a
+            >
+            {% else %}
+            <a href="{% url 'users:login' %}" class="buy-button">Comprar</a>
+            {% endif %}
+          </div>
         </div>
-        {% empty %}
-        <p>Nenhum curso livre cadastrado.</p>
-        {% endfor %}
+      </div>
     </div>
+    {% empty %}
+    <p>Nenhum curso pago cadastrado.</p>
+    {% endfor %}
+  </div>
 
-    {% if user.is_authenticated is not True %}
-    <a class="login2-btn" href="/users/login/">Fazer login para adicionar curso</a>
-    {% endif %}
+  <h2 class="area-title" style="margin-top: 60px">Cursos Livres</h2>
+  <div class="courses-list">
+    {% for course in free_courses %}
+    <div class="course-card">
+      <div class="course-thumb">
+          {% if course.video_thumbnail %}
+          <img
+            src="{{ course.video_thumbnail.url }}"
+            alt="Thumbnail do curso"
+          />
+          {% else %}
+          <div class="thumb-placeholder">img</div>
+          {% endif %}
+        </a>
+      </div>
+      <div class="course-info">
+        <div class="instructor-info">
+          {% if course.instructor.profile_picture %}
+          <img
+            class="instructor-avatar"
+            src="{{ course.instructor.profile_picture.url }}"
+            alt="{{ course.instructor.name }}"
+          />
+          {% endif %}
+          <span>{{ course.instructor.name }}</span>
+        </div>
+          <h3>{{ course.title }}</h3>
+        </a>
+        <p>{{ course.description|truncatewords:20 }}</p>
+        <div class="course-meta">
+          <div class="course-rating">
+            <span>★★★★★</span>
+          </div>
+          <div class="course-actions">
+            {% if user.is_authenticated %}
+            <a
+              href="{% url 'courses:course_detail' course.pk %}"
+              class="buy-button"
+              >Acessar</a
+            >
+            {% else %}
+            <a href="{% url 'users:login' %}" class="buy-button">Acessar</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>Nenhum curso livre cadastrado.</p>
+    {% endfor %}
+  </div>
+
+  {% if user.is_authenticated is not True %}
+  <a class="login2-btn" href="/users/login/"
+    >Fazer login para acessar curso</a
+  >
+  {% endif %}
 </div>
 {% endblock %}
