@@ -7,3 +7,6 @@ def home(request):
     courses = Course.objects.filter(title__icontains='Manipular Imagens com Photoshop')
 
     return render(request, 'home/home-base.html', {'posts': posts, 'courses': courses})
+
+def privacy(request):
+    return render(request, 'home/privacy.html')

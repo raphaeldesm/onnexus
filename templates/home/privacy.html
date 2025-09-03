@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Privacidade{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f0f2f5;
+    }
+    .privacy-container {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .privacy-card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        padding: 40px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        position: relative;
+    }
+    .back-link {
+        display: inline-block;
+        margin-bottom: 24px;
+        color: #8A2BE2;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    .privacy-card h1 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+    .privacy-card p.subtitle {
+        font-size: 18px;
+        color: #5f6368;
+        margin-bottom: 8px;
+    }
+    .privacy-card p.update-date {
+        font-size: 14px;
+        color: #9aa0a6;
+        margin-bottom: 32px;
+    }
+    .privacy-card h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 32px;
+        margin-bottom: 16px;
+    }
+    .privacy-card p, .privacy-card ul {
+        color: #3c4043;
+        line-height: 1.7;
+        font-size: 16px;
+    }
+    .privacy-card ul {
+        padding-left: 20px;
+        margin-top: 16px;
+    }
+    .privacy-card li {
+        margin-bottom: 12px;
+    }
+    .privacy-card a {
+        color: #8A2BE2;
+        text-decoration: none;
+    }
+    .privacy-card a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="privacy-container">
+    <div class="privacy-card">
+        <a href="{% url 'home' %}" class="back-link">&lt; Privacidade.</a>
+        <h1>Privacidade.</h1>
+        <p class="subtitle">Valorizamos sua privacidade e segurança.</p>
+        <p class="update-date">Última atualização: 1 de setembro de 2025</p>
+
+        <p>A sua privacidade é importante para nós. É política do site onNexus respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no nosso site.</p>
+        <p>Esta política de privacidade explica como nós, da onNexus, coletamos, usamos, compartilhamos e protegemos as informações pessoais que você nos fornece ao visitar nosso site.</p>
+
+        <h2>1. Coleta de Informações</h2>
+        <p>Coletamos informações de duas maneiras principais:</p>
+        <ul>
+            <li><strong>Informações que você nos fornece diretamente:</strong> Isso acontece quando você entra em contato conosco através do nosso formulário de contato ou nos envia um e-mail. As informações coletadas podem incluir seu nome, endereço de e-mail e qualquer outra informação que você decida compartilhar na sua mensagem. Solicitamos apenas as informações estritamente necessárias para atender à sua solicitação.</li>
+            <li><strong>Informações coletadas automaticamente:</strong> Quando você navega pelo onNexus, podemos coletar informações técnicas sobre o seu dispositivo e sua visita. Isso pode incluir seu endereço IP, tipo de navegador, páginas visitadas, tempo gasto no site e outras estatísticas. Essas informações são coletadas de forma anônima e agregada, através de cookies e tecnologias semelhantes (como o Google Analytics), e nos ajudam a entender como os visitantes usam nosso site, permitindo-nos melhorar sua experiência.</li>
+        </ul>
+
+        <h2>2. Uso das Informações</h2>
+        <p>As informações que coletamos são utilizadas para as seguintes finalidades:</p>
+        <ul>
+            <li><strong>Comunicação:</strong> Para responder às suas perguntas, comentários e solicitações enviadas através de nosso formulário de contato.</li>
+            <li><strong>Melhoria do Site:</strong> Para analisar o tráfego e o comportamento do usuário, o que nos ajuda a otimizar o conteúdo, a funcionalidade e o design do nosso portfólio.</li>
+            <li><strong>Segurança:</strong> Para monitorar e proteger a segurança do nosso site, prevenindo atividades fraudulentas ou maliciosas.</li>
+        </ul>
+
+        <h2>3. Cookies</h2>
+        <p>Cookies são pequenos arquivos de texto armazenados no seu navegador. O onNexus utiliza cookies para:</p>
+        <ul>
+            <li><strong>Cookies Essenciais:</strong> Necessários para o funcionamento básico do site.</li>
+            <li><strong>Cookies de Análise/Desempenho:</strong> Nos ajudam a reconhecer e contar o número de visitantes e a ver como eles se movem pelo site. Isso nos ajuda a melhorar a forma como nosso site funciona.</li>
+        </ul>
+        <p>Você pode ajustar as configurações do seu navegador para recusar todos os cookies ou para indicar quando um cookie está sendo enviado. No entanto, se você não aceitar cookies, talvez não consiga usar algumas partes do nosso site.</p>
+
+        <h2>4. Compartilhamento de Informações</h2>
+        <p>Nós não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros para fins de marketing.</p>
+        <p>Podemos compartilhar suas informações com:</p>
+        <ul>
+            <li><strong>Provedores de Serviços:</strong> Empresas que nos auxiliam na operação do site, como serviços de hospedagem e ferramentas de análise (ex: Google Analytics). Esses provedores têm acesso limitado às suas informações e são obrigados contratualmente a protegê-las.</li>
+            <li><strong>Cumprimento da Lei:</strong> Se exigido por lei ou em resposta a solicitações válidas por autoridades públicas (por exemplo, um tribunal ou uma agência governamental).</li>
+        </ul>
+
+        <h2>5. Segurança dos Dados</h2>
+        <p>Empregamos medidas de segurança técnica e administrativa para proteger suas informações pessoais contra perda, uso indevido, acesso não autorizado, divulgação ou alteração. No entanto, lembre-se de que nenhum método de transmissão pela Internet ou de armazenamento eletrônico é 100% seguro.</p>
+
+        <h2>6. Seus Direitos de Privacidade (LGPD)</h2>
+        <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/18), você, como titular dos dados, tem o direito de:</p>
+        <ul>
+            <li>Confirmar a existência de tratamento de seus dados.</li>
+            <li>Acessar seus dados.</li>
+            <li>Corrigir dados incompletos, inexatos ou desatualizados.</li>
+            <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos.</li>
+            <li>Solicitar a portabilidade dos seus dados a outro fornecedor de serviço ou produto.</li>
+            <li>Solicitar a eliminação dos dados tratados com o seu consentimento.</li>
+            <li>Obter informações sobre as entidades com as quais compartilhamos seus dados.</li>
+            <li>Revogar o consentimento a qualquer momento.</li>
+        </ul>
+        <p>Para exercer qualquer um desses direitos, entre em contato conosco através do e-mail: <a href="mailto:contato@onnexus.com">contato@onnexus.com</a>.</p>
+
+        <h2>7. Links para Sites de Terceiros</h2>
+        <p>Nosso site pode conter links para outros sites que não são operados por nós (por exemplo, links para perfis em redes sociais ou para projetos em que trabalhei). Se você clicar em um link de terceiro, será direcionado para o site desse terceiro. Aconselhamos vivamente que reveja a Política de Privacidade de todos os sites que visitar. Não temos controle e não assumimos qualquer responsabilidade pelo conteúdo ou práticas de privacidade de quaisquer sites ou serviços de terceiros.</p>
+
+        <h2>8. Alterações a Esta Política de Privacidade</h2>
+        <p>Podemos atualizar nossa Política de Privacidade de tempos em tempos. Notificaremos sobre quaisquer alterações, publicando a nova Política de Privacidade nesta página e atualizando a data da "Última atualização" no topo.</p>
+
+        <h2>9. Contato</h2>
+        <p>onNexus E-mail: <a href="mailto:contato@onnexus.com">contato@onnexus.com</a></p>
+    </div>
+</div>
+{% endblock %}

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>onNexus</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <header class="header">
         <nav class="navbar">
@@ -19,6 +20,10 @@
             </div>
             <div class="nav-right">
                 {% if user.is_authenticated %}
+                    <div class="nav-icons">
+                        <a href="#" class="nav-icon"><i class="fas fa-comment-dots"></i></a>
+                        <a href="#" class="nav-icon"><i class="fas fa-bell"></i></a>
+                    </div>
                     <div class="profile-menu-container">
                         <img src="{{ user.userprofile.profile_picture.url }}" alt="Perfil" class="profile-avatar" onclick="toggleProfileMenu()">
                         <div id="profile-menu" class="profile-menu">
@@ -38,7 +43,7 @@
     </header>
     <div id="sidebar-menu" class="sidebar-menu">
         <a href="/explore">Explorar</a>
-        <a href="#">Contratar</a>
+        <a href="{% url 'explore:hire' %}">Contratar</a>
         <a href="/cursos/">Cursos</a>
     </div>
     <main>
@@ -55,7 +60,7 @@
                 <h3>onNexus</h3>
                 <ul>
                     <li><a href="#">Termos e condições</a></li>
-                    <li><a href="#">Privacidade</a></li>
+                    <li><a href="{% url 'privacy' %}">Privacidade</a></li>
                     <li><a href="#">Fale conosco</a></li>
                     <li><a href="#">Sobre</a></li>
                 </ul>
