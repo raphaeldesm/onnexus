@@ -101,7 +101,8 @@
         <input type="text" placeholder="Procurar profissional criativo">
         <button>&#x1F50D;</button>
     </div>
-    <form>
+    <form action="{% url 'messaging:messages' %}" method="post">
+    {% csrf_token %}
         <div class="form-group">
             <label for="project-name">Qual é o nome do projeto pessoal ou sua empresa?</label>
             <input type="text" id="project-name" placeholder="Bode do Nô, Vanguard etc.">
@@ -130,9 +131,8 @@
             <label for="hiring-for">Estou contratando para:</label>
             <select id="hiring-for">
                 <option selected>Selecione uma opção</option>
-                <option>Projeto pontual</option>
-                <option>Trabalho contínuo</option>
-                <option>Contratação em tempo integral</option>
+                <option>Projeto pessoal</option>
+                <option>Empresa</option>
             </select>
         </div>
         <div class="form-group">

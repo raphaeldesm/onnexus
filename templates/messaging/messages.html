@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Mensagens{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .messages-container {
+        display: flex;
+        height: calc(100vh - 60px); /* Adjust based on header height */
+        margin-top: 60px;
+    }
+    .sidebar {
+        width: 300px;
+        background-color: #fff;
+        border-right: 1px solid #e0e0e0;
+        padding: 20px;
+    }
+    .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .conversation-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .conversation-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    .conversation-item.active, .conversation-item:hover {
+        background-color: #f0f2f5;
+    }
+    .conversation-item img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .conversation-info .name {
+        font-weight: 600;
+    }
+    .conversation-info .last-message {
+        font-size: 14px;
+        color: #666;
+    }
+    .chat-area {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+    .chat-header {
+        padding: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .chat-header .user-info {
+        display: flex;
+        align-items: center;
+    }
+    .chat-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .chat-header .name {
+        font-weight: 600;
+        font-size: 18px;
+    }
+    .chat-header .follow-btn {
+        background-color: #8A2BE2;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .rating .fa-star {
+        color: #ffc107;
+    }
+    .chat-body {
+        flex-grow: 1;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    .services-section {
+        margin-bottom: 30px;
+    }
+    .services-section h3 {
+        margin-bottom: 15px;
+    }
+    .service-cards {
+        display: flex;
+        gap: 20px;
+    }
+    .service-card {
+        width: 150px;
+        height: 100px;
+        background-color: #f0f2f5;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+    }
+    .message-list {
+        padding: 10px;
+    }
+    .message {
+        margin-bottom: 20px;
+        display: flex;
+    }
+    .message img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    .message-content {
+        background-color: #f0f2f5;
+        padding: 15px;
+        border-radius: 15px;
+        max-width: 70%;
+    }
+    .message-content .name {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    .chat-footer {
+        padding: 20px;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+    }
+    .chat-footer input {
+        flex-grow: 1;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        margin-right: 10px;
+    }
+    .chat-footer button {
+        background-color: #8A2BE2;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="messages-container">
+    <div class="sidebar">
+        <h2>Mensagens</h2>
+        <ul class="conversation-list">
+            {% for contact in contacts %}
+            <li class="conversation-item {% if forloop.first %}active{% endif %}">
+                <img src="https://i.pravatar.cc/50?u={{ contact.avatar_id }}" alt="{{ contact.name }}">
+                <div class="conversation-info">
+                    <div class="name">{{ contact.name }}</div>
+                    <div class="last-message">Você enviou uma mensagem</div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="chat-area">
+        <div class="chat-header">
+            <div class="user-info">
+                <a href="#" style="font-size: 24px; margin-right: 15px; color: #333;">&lt;</a>
+                <img src="https://i.pravatar.cc/50?u={{ selected_contact.avatar_id }}" alt="{{ selected_contact.name }}">
+                <div class="name">{{ selected_contact.name }}</div>
+            </div>
+            <div class="user-actions">
+                <span class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </span>
+                <button class="follow-btn">Seguir</button>
+            </div>
+        </div>
+        <div class="chat-body">
+            <div class="services-section">
+                <h3>Escolher serviços</h3>
+                <div class="service-cards">
+                    <div class="service-card">img</div>
+                    <div class="service-card">img</div>
+                    <div class="service-card">img</div>
+                </div>
+            </div>
+            <div class="message-list">
+                <div class="message">
+                    <img src="https://i.pravatar.cc/40?u=karmen" alt="Karmen Koto">
+                    <div class="message-content">
+                        <div class="name">Karmen Koto</div>
+                        <p>Muito bom! Aprendi técnicas que sempre quis dominar no Photoshop. Conteúdo direto ao ponto e fácil de acompanhar. Vale a pena!</p>
+                    </div>
+                </div>
+                <div class="message">
+                    <img src="https://i.pravatar.cc/40?u={{ selected_contact.avatar_id }}" alt="{{ selected_contact.name }}">
+                    <div class="message-content">
+                        <div class="name">{{ selected_contact.name }}</div>
+                        <p>Simplesmente sensacional! O curso de Photoshop superou todas as minhas expectativas. As aulas são bem explicadas, com uma didática clara e exemplos práticos que facilitam o aprendizado.</p>
+                    </div>
+                </div>
+                 <div class="message">
+                    <img src="https://i.pravatar.cc/40?u=karmen" alt="Karmen Koto">
+                    <div class="message-content">
+                        <div class="name">Karmen Koto</div>
+                        <p>Muito bom! Aprendi técnicas que sempre quis dominar no Photoshop. Conteúdo direto ao ponto e fácil de acompanhar. Vale a pena!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" placeholder="Digite sua mensagem">
+            <button>Enviar</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -20,20 +20,33 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         position: relative;
     }
+    .privacy-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
     .back-link {
-        display: inline-block;
-        margin-bottom: 24px;
-        color: #8A2BE2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        color: #333;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s;
     }
     .back-link:hover {
-        text-decoration: underline;
+        background-color: #e0e0e0;
     }
     .privacy-card h1 {
         font-size: 24px;
         font-weight: 600;
-        margin-bottom: 4px;
+        margin: 0;
     }
     .privacy-card p.subtitle {
         font-size: 18px;
@@ -74,8 +87,10 @@
 
 <div class="privacy-container">
     <div class="privacy-card">
-        <a href="{% url 'home' %}" class="back-link">&lt; Privacidade.</a>
-        <h1>Privacidade.</h1>
+        <div class="privacy-header">
+            <a href="{% url 'home' %}" class="back-link">&lt;</a>
+            <h1>Privacidade.</h1>
+        </div>
         <p class="subtitle">Valorizamos sua privacidade e segurança.</p>
         <p class="update-date">Última atualização: 1 de setembro de 2025</p>
 

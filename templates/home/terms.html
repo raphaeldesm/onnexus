@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .terms-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        color: #333;
+        line-height: 1.6;
+    }
+    .terms-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+    .back-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        color: #333;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .back-link:hover {
+        background-color: #e0e0e0;
+    }
+    .terms-header h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 0;
+    }
+    .terms-container .update-date {
+        font-size: 14px;
+        color: #5f6368;
+        margin-bottom: 24px;
+    }
+    .terms-container h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 32px;
+        margin-bottom: 12px;
+    }
+    .terms-container p, .terms-container li {
+        font-size: 16px;
+        color: #333;
+    }
+    .terms-container ul {
+        padding-left: 20px;
+    }
+    .terms-container a {
+        color: #8A2BE2;
+        text-decoration: none;
+    }
+    .terms-container a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="terms-container">
+    <div class="terms-header">
+        <a href="{% url 'home' %}" class="back-link">&lt;</a>
+        <h1>Termos e Condições</h1>
+    </div>
+    <p class="update-date">Última atualização: 3 de setembro de 2025</p>
+
+    <p>Bem-vindo ao onNexus!</p>
+    <p>Estes Termos e Condições ("Termos") descrevem as regras para usar o site onNexus, localizado. Ao acessar este site, presumimos que você aceita estes Termos em sua totalidade. Não continue a usar o site onNexus se você não concordar com todos os Termos declarados nesta página.</p>
+
+    <h2>1. Aceitação dos Termos</h2>
+    <p>Ao acessar ou usar a plataforma onNexus, você concorda com estes Termos. Se não concordar, não use nossos serviços.</p>
+
+    <h2>2. Serviços Oferecidos</h2>
+    <p>A onNexus é uma plataforma de conexão entre usuários e prestadores de serviços criativos (fotografos, designers gráficos, ilustradores etc.). Não somos responsáveis pelos serviços prestados por terceiros.</p>
+
+    <h2>3. Cadastro</h2>
+    <p>Para usar certos recursos, você precisará se cadastrar fornecendo informações verdadeiras. Mantenha sua senha segura.</p>
+
+    <h2>4. Responsabilidades</h2>
+    <ul>
+        <li>Do onNexus: Disponibilizar a plataforma e manter as informações dos prestadores atualizadas.</li>
+        <li>Do Usuário: Verificar a idoneidade do prestador antes de contratar.</li>
+    </ul>
+
+    <h2>5. Pagamentos</h2>
+    <p>Qualquer transação financeira é feita diretamente com a onNexus, facilitando quaisquer transtornos com os pagamentos.</p>
+
+    <h2>6. Privacidade</h2>
+    <p>Seus dados são protegidos conforme nossa <a href="{% url 'privacy' %}">Política de Privacidade</a>.</p>
+
+    <h2>7. Modificações</h2>
+    <p>Podemos alterar estes Termos a qualquer momento. Alterações serão comunicadas por e-mail ou através do site.</p>
+
+    <h2>8. Contato</h2>
+    <p>Se você tiver alguma dúvida sobre este Termos e Condições, entre em contato conosco:</p>
+    <p>onNexus E-mail: contato@onnexus.com.</p>
+</div>
+{% endblock %}
